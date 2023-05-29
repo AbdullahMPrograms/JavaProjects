@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"com.MalikSort","l":"SortDriver"},{"p":"com.MalikSort","l":"Sorts"}];updateSearchResults();

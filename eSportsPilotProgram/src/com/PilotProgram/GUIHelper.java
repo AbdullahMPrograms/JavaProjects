@@ -22,9 +22,10 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * 
+ *
  * @author Abdullah Malik
  * @version 1.0
+ * this helps to find the right placement/size of the screenshots for input into the cfg file for each games and their respective resolutions
  */
 public class GUIHelper extends Application {
 
@@ -141,7 +142,11 @@ public class GUIHelper extends Application {
 		stage.show();
 
 	}
-
+/**
+ * runs GUIHelper
+ * @param args
+ * @throws AWTException
+ */
 	public static void main(String[] args) throws AWTException {
 		launch(args);
 

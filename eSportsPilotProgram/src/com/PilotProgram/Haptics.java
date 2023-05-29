@@ -3,10 +3,17 @@ package com.PilotProgram;
 import com.phidget22.Hub;
 import com.phidget22.Phidget;
 import com.phidget22.PhidgetException;
-
+/**
+ * class for things concerning haptics
+ * @author Oliver Dickins and Abdullah Malik
+ *
+ */
 public class Haptics {
 	static int errorCount = 0;
-
+/**
+ * this method activates the haptic device that is attached to users arm
+ * @throws Exception
+ */
 	public static void activateHaptics() throws Exception {
 		try {
 			Hub ch = new Hub();
@@ -24,7 +31,10 @@ public class Haptics {
 			System.out.println("Error: " + ex);
 		}
 	}
-
+	/**
+	 * returns the amount of errors
+	 * @return
+	 */
 	public static int getErrorCount() {
 		return errorCount;
 

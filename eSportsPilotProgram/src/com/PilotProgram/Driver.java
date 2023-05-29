@@ -1,9 +1,17 @@
 package com.PilotProgram;
 
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Oliver Dickins and Abdullah Malik
+ *Driver used to input game name and resolution through console, not used anymore
+ */
 public class Driver {
-
+/**
+ * main to gain input from user
+ * @param args
+ * @throws Exception
+ */
 	public static void main(String[] args) throws Exception {
 		Boolean loop = false;
 
@@ -23,7 +31,7 @@ public class Driver {
 		while (!loop) {
 			if (Game.damageTaken()) {
 				System.out.println("Damage Taken");
-				// Haptics.activateHaptics();
+				Haptics.activateHaptics();
 			} else {
 				System.out.println("Damage not Taken");
 			}

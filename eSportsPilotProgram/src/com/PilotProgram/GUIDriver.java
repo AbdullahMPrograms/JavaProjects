@@ -18,7 +18,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
+/**
+ * This guiDriver is the main controller of the program, used to select games, along with their resolution, and start each games damage detection. 
+ * also includes settings to test haptics ,and exit button
+ * @author Oliver Dickins and Abdullah Malik
+ *
+ */
 public class GUIDriver extends Application {
 	static Boolean done = false;
 
@@ -307,14 +312,14 @@ public class GUIDriver extends Application {
 		HBox txtFN = new HBox(20);
 
 		// input txt field size and values etc.
-		Label hapticFeedFN = new Label();
+		TextField hapticFeedFN = new TextField();
 		hapticFeedFN.setFont(txtFont);
 		hapticFeedFN.setMinSize(300, 100);
 		hapticFeedFN.setText("HAPTIC FEED");
 		hapticFeedFN.setAlignment(Pos.CENTER);
 		hapticFeedFN.setDisable(true);
 
-		Label damageFeedFN = new Label();
+		TextField damageFeedFN = new TextField();
 		damageFeedFN.setFont(txtFont);
 		damageFeedFN.setMinSize(300, 100);
 		damageFeedFN.setText("DAMAGE FEED");
@@ -477,14 +482,14 @@ public class GUIDriver extends Application {
 		HBox txtFIF = new HBox(20);
 
 		// input txt field size and values etc.
-		Label hapticFeedFIF = new Label();
+		TextField hapticFeedFIF = new TextField();
 		hapticFeedFIF.setFont(txtFont);
 		hapticFeedFIF.setMinSize(300, 100);
 		hapticFeedFIF.setText("HAPTIC FEED");
 		hapticFeedFIF.setAlignment(Pos.CENTER);
 		hapticFeedFIF.setDisable(true);
 
-		Label damageFeedFIF = new Label();
+		TextField damageFeedFIF = new TextField();
 		damageFeedFIF.setFont(txtFont);
 		damageFeedFIF.setMinSize(300, 100);
 		damageFeedFIF.setText("GOAL FEED");
@@ -639,6 +644,7 @@ public class GUIDriver extends Application {
 									hapticFeedApex.setText("Haptic Disabled");
 								} else {
 									damageFeedApex.setText("Damage Not Taken");
+									hapticFeedApex.setText("Haptic Disabled");
 								}
 								System.out.println("Damage Not Taken");
 
@@ -771,7 +777,7 @@ public class GUIDriver extends Application {
 		// button to start damage detection
 		startBtnFN.setOnAction(e -> {
 			try {
-				Game.setGameInfo("Fortnite", resListD2.getValue());
+				Game.setGameInfo("Fortnite", resListFN.getValue());
 				Config.readConfig();
 				Screen.setCaptureRect();
 				done = false;
@@ -786,8 +792,8 @@ public class GUIDriver extends Application {
 							if (Game.damageTaken()) {
 								damageFeedFN.setText("Damage Taken");
 								System.out.println("Damage Taken");
-								// Haptics.activateHaptics();
 								hapticFeedFN.setText("Haptics Enabled");
+								Haptics.activateHaptics();
 								Thread.sleep(150);
 							} else {
 								damageFeedFN.setText("Damage Not Taken");
@@ -954,7 +960,7 @@ public class GUIDriver extends Application {
 		btnFIF.setOnMouseEntered(event -> {
 			btnFIF.setStyle("-fx-background-color : #0A0E3F; -fx-text-fill: white; -fx-font-size: 28px;");
 			imgViewFIF.setOpacity(0.5);
-			btnFIF.setText("Fortnite");
+			btnFIF.setText("FIFA");
 			btnFIF.setContentDisplay(ContentDisplay.CENTER);
 		});
 		btnFIF.setOnMouseExited(event -> {
@@ -978,15 +984,16 @@ public class GUIDriver extends Application {
 			done = true;
 		});
 
-		// button to start damage detection
+		// button to start goals detection FIFA
 		startBtnFIF.setOnAction(e -> {
-			done = true;
+			done = false;
 			try {
 				Game.setGameInfo("Fifa", resListFIF.getValue());
 				Config.readConfig();
 				Screen.setCaptureRect();
-				Thread.sleep(5000);
-				// Screen.isBarOpenFifa();
+				//allow for time to open game
+				Thread.sleep(3000);
+				//Screen.isBarOpenFifa();
 				Task<Void> task = new Task<Void>() {
 					@Override
 					public Void call() throws Exception {
@@ -999,7 +1006,7 @@ public class GUIDriver extends Application {
 								System.out.println("Goal Conceded");
 								// Haptics.activateHaptics();
 								hapticFeedFIF.setText("Haptics Enabled");
-								Thread.sleep(150);
+								Thread.sleep(300);
 							} else {
 								damageFeedFIF.setText("No Goal Conceded");
 								System.out.println("No Goal Conceded");
@@ -1020,7 +1027,10 @@ public class GUIDriver extends Application {
 		// <----------- /FIFA ------------->
 
 	}
-
+	/**
+	 * runs GUIDriver
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

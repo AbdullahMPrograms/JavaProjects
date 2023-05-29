@@ -1,9 +1,17 @@
 package com.PilotProgram;
-
+/**
+ * this class controls functions to do directly with a game
+ * @author Oliver Dickins and Abdullah Malik
+ *
+ */
 public class Game {
 	static String gameInfo = null;
 	static String gameName = null;
-
+/**
+ * sets the information of which game and resolution the user is playing
+ * @param game
+ * @param res
+ */
 	public static void setGameInfo(String game, String res) {
 		String gameRes = null;
 
@@ -12,15 +20,25 @@ public class Game {
 
 		gameInfo = "//" + gameName + "//" + gameRes;
 	}
-
+/**
+ * returns the current game's name
+ * @return
+ */
 	public static String getGameName() {
 		return gameName;
 	}
-
+	/**
+	 * returns the current game's name and res (directory for cfg file)
+	 * @return
+	 */
 	public static String getGameInfo() {
 		return gameInfo;
 	}
-
+/**
+ * this method determines whether the user has taken damage etc. in the game by comparing past values to present and looking for differences. (using Thread.sleep();)
+ * @return
+ * @throws Exception
+ */
 	public static Boolean damageTaken() throws Exception {
 		boolean damageTaken = false;
 
@@ -28,7 +46,6 @@ public class Game {
 		if (getGameName().equals("Apex")) {
 			max = Screen.countHealthApex();
 			Thread.sleep(1000);
-
 			if (max > Screen.countHealthApex() && max != 0 && Screen.countHealthApex() != 0) {
 				damageTaken = true;
 			}
@@ -62,18 +79,24 @@ public class Game {
 		}
 
 		if (gameName.equals("Fifa")) {
-			max = Screen.countScoreFifa();
-			// System.out.println(max);
-			Thread.sleep(500);
-
-			if (OCR.getOCR(Screen.getBufferedImage()).length() == 5) {
-				String str = OCR.getOCR(Screen.getBufferedImage()).substring(2, 3);
-
-				boolean result = str.matches("[0-9]+");
-
-				if (max < Screen.countScoreFifa() && result == true) {
+			if (Screen.isBarOpenFifa()) {
+				max = Screen.countScoreFifa(0);			
+				Thread.sleep(1000);
+				if (Screen.isBarOpenFifa() && max < Screen.countScoreFifa(max)) {
 					damageTaken = true;
 				}
+			}else {
+				Thread.sleep(500);
+				}
+			
+		}
+
+		if (gameName.equals("Minecraft")) {
+			max = Screen.countHealthMinecraft();
+			Thread.sleep(1000);
+
+			if (max > Screen.countHealthMinecraft() && max != 0 && Screen.countHealthMinecraft() != 0) {
+				damageTaken = true;
 			}
 		}
 

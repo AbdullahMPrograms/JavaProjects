@@ -1,7 +1,11 @@
 package com.PilotProgram;
 
 import com.phidget22.RCServo;
-
+/**
+ * This class is not used anymore as servos were not included in the final product
+ * @author Abdullah Malik
+ *
+ */
 public class Servo {
 
 	public static void main(String[] args) throws Exception {

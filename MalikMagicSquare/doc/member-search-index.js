@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"com.MalikMagic","c":"MagicSquare","l":"MagicSquare()","u":"%3Cinit%3E()"},{"p":"com.MalikMagic","c":"MagicSquare","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
